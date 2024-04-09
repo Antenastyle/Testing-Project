@@ -3,15 +3,12 @@
 
 *** Settings ***
 
-# TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+Documentation	Testing the Project functionality. CRUD Operations: Create, Read, Update and Delete.
 
-Documentation	
 
-# TODO: Write Precondition, Postcondition, Tags
-
-Pre Condition	 
-Post Condition	
-Tags
+Pre Condition	 	User is Logged In in GitLab
+Post Condition		User is Logged out of GitLab
+Tags	Project, TS-1-Project
 
 #******************* Common Variables ********************
 
@@ -19,26 +16,61 @@ Tags
 
 # NOTE: Please Remove your login credential before uploading Assignments
 
-# TODO: Write Project creation field variables
-
-
+NewBlankProjectUrl=			https://gitlab.com/projects/new#blank_project
+NewTemplateProjectUrl=  	https://gitlab.com/projects/new#create_from_template
+UserName=					Ekaitz
+ProjectName=				Project Test
+NewProjectName=				Project Test Test
+ProjectSlug=				projecttest
+ProjectUrl=					https://gitlab.com/UserName/ProjectSlug
+ProjectVisibility=			Private
+Template=					Spring
 
 #******************** Test Cases *************************
 
 *** Test Case ***
 
-# TODO: Write Positive and Negative Test Cases and Test Process steps
+# Positive Test
 
-# Positive Test examples are below write test process steps for each below test case
+	Create A New Blank Project
+		Navigate To New Blank Project Page NewBlankProjectUrl
+		Input Project Name ProjectName
+		Input Project Slug ProjectSlug
+		Select Project Visibility ProjectVisibility
+		Submit Project Creation Form
+		Verify Page Should Contain Project 'ProjectName' was successfully created.
 
-	Create blank project
-	Create template project 
-	Update name of template project
-	Delete template project
-	Valide that message is showing Project 'First project ' was successfully created.
+	Create A New Template Project
+		Navigate To New Template Project Page NewTemplateProjectUrl
+		Select Template Template
+		Input Project Name ProjectName
+		Input Project Slug ProjectSlug
+		Input Project Visibility ProjectVisibility
+		Submit Project Creation Form
+		Verify Page Should Contain The project was successfully imported.
 
-# Negative Test examples are below write test process steps for each below test case
+	Update Name Of Template Project
+		Navigate To ProjectUrl
+		Select Project Settings (3 Dots On the Upper-Right corner)
+		Input New Project Name NewProjectName
+		Submit Save Changes
+		Verify Page Should Contain Project 'NewProjectName' was successfully updated.
+
+	Delete Template Project
+		Navigate To ProjectUrl
+		Select Project Settings (3 Dots On the Upper-Right corner)
+		Expand Advanced Options
+		Click Delete Project
+		Input Project Name UserName/ProjectName
+		Click Yes, Delete Project
+		Verify Page Should Contain Project 'UserName/ProjectName' is in the process of being deleted.
+
+# Negative Test
 
 	Create a blank project with the previous same name
-
-
+		Navigate To New Blank Project Page NewBlankProjectUrl
+		Input Project Name ProjectName
+		Input Project Slug ProjectSlug
+		Select Project Visibility ProjectVisibility
+		Submit Project Creation Form
+		Verify Page Should Contain Name has already been taken
