@@ -4,7 +4,7 @@
 > Please use the below questions as guidelines to help you think and plan your Learning Reflection Report
 
 ## 1. How was your experience testing the given Webapp?
-- It was very helpful to learn how to test software in the practical way. The good point was that the Webapp is a big one and it doesn't have any apparent errors in it.
+- It was very helpful to learn how to test software in the practical way. The good point was that the Webapp is a big one and it doesn't have any apparent errors in it. GitLab is very similar to GitHub which I use a lot in my daily work so the Webapp was already familiar to me and had no issues using it or getting to know where everythin was.
      
 
 ## 2. How did you write or manage your test case? Describe the process.
@@ -17,7 +17,7 @@
 
 
 ## 4. Which IDE (Visual Code or Atom or else) have you used to edit files?
-- I used Visual Studio Code with the Auto-Open Markdown Preview extension to see the final result of the markdown files.
+- I used Visual Studio Code with the Auto-Open Markdown Preview extension to see the final result of the markdown files because it's the IDE that I use the most to program and make all my daily work.
 
 
      
