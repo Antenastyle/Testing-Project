@@ -5,7 +5,6 @@
 
 Documentation	Testing the Project functionality. CRUD Operations: Create, Read, Update and Delete.
 
-
 Pre Condition	 	User is Logged In in GitLab
 Post Condition		User is Logged out of GitLab
 Tags	Project, TS-1-Project
@@ -67,8 +66,17 @@ Template=					Spring
 
 # Negative Test
 
-	Create a blank project with the previous same name
+	Create a Blank Project with the previous same name
 		Navigate To New Blank Project Page NewBlankProjectUrl
+		Input Project Name ProjectName
+		Input Project Slug ProjectSlug
+		Select Project Visibility ProjectVisibility
+		Submit Project Creation Form
+		Verify Page Should Contain Name has already been taken
+
+	Create a Template Project with the previous same name
+		Navigate To New Template Project Page NewTemplateProjectUrl
+		Select Template Template
 		Input Project Name ProjectName
 		Input Project Slug ProjectSlug
 		Select Project Visibility ProjectVisibility
