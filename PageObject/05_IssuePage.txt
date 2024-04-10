@@ -2,34 +2,67 @@
 #******************** Settings ************************
 
 *** Settings ***
+
 Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
 
-# TODO: Write Precondition and Postcondition, Tags 
-
-Pre Condition	Tips: Project must be created by the user before 
-Post Condition	
-Tags
+Pre Condition		User is logged in and a project must be created by the user before 
+Post Condition		User is logged out and the project has issues created
+Tags	Issue, TS-1-Issue
 
 #******************* Common Variables ********************
-
 
 *** Variables ***
 
 # NOTE: Please Remove your login credential before uploading Assignments
 
-# TODO: Write Issue creation field variables, Updated name of the issue
-
-
+ProjectName=		projecttest
+Username=			Ekaitz
+IssuesUrl=			https://gitlab.com/UserName/ProjectName/-/issues
+IssueName=			Issue001
+NewIssueName=		Issue002
+Empty=				
 
 #******************** Test Cases *************************
 
 *** Test Case ***
 
-# TODO: Write Positive Test Cases and Test Process steps
+# Positive Test
 
-# Positive Test examples are below write test process steps for each below test case
+	Create Issue
+		Navigate To Issue Page IssuesUrl
+		Click New Issue
+		Input Issue Name IssueName
+		Submit New Issue Form
+		Verify Page Should Contain Issue created just now by UserName
 
-	Create issue,
- 	Update name of issue, 
-	Create second issue with privious updated name
-    Delete first issue
+	Update Name Of Issue
+		Navigate To Issue Page IssuesUrl
+		Click Issue IssueName
+		Click Edit
+		Input New Issue Name NewIssueName
+		Submit Edit Issue Form
+		Verify Page Should Contain UserName changed title from IssueName to NewIssueName just now
+
+	Create Second Issue with previous updated name
+		Navigate To Issue Page IssuesUrl
+		Click New Issue
+		Input Issue Name NewIssueName
+		Submit New Issue Form
+		Verify Page Should Contain Issue created just now by UserName
+	
+	Delete First Issue
+		Navigate To Issue Page IssuesUrl
+		Click Issue NewIssueName
+		Click Settings (3 Dots On the Upper-Right corner)
+		Click Delete Issue
+		Submit Delete Issue Form
+		Verify Page Should Contain The issue was successfully deleted.
+
+# Negative Test
+
+	Create Issue Without Name
+		Navigate To Issue Page IssuesUrl
+		Click New Issue
+		Input Issue Name Empty
+		Submit New Issue Form
+		Verify Page Should Contain This field is required.
